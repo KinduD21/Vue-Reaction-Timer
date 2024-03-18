@@ -1,28 +1,28 @@
-<script setup>
-import { ref } from "vue";
-
-// Create an array to store counters for each button
-const counts = ref([0, 0, 0, 0]);
-
-// Define a function to increment a specific counter based on index
-function increment(index) {
-  counts.value[index]++;
-}
-</script>
-
 <template>
-  <div class="flex h-screen items-center justify-center bg-zinc-900">
-    <main class="flex w-80 flex-col rounded-lg bg-zinc-800 p-5">
-      <ul class="flex flex-col gap-4">
-        <!-- Use v-for to loop through the counts array and render buttons -->
-        <li v-for="(count, index) in counts" :key="index">
-          <button @click="increment(index)"
-            class="h-10 w-full rounded-md bg-zinc-700 text-white"
-          >
-            Count is: {{ count }}
-          </button>
-        </li>
-      </ul>
-    </main>
+  <div class="flex flex-col justify-center gap-5">
+    <h1 class="mt-16 text-center text-5xl font-bold text-gray-800">
+      Ninja Reaction Timer
+    </h1>
+    <button @click="start">Play</button>
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  components: {},
+  data() {
+    return {
+      isPlaying: false,
+      delay: null,
+    };
+  },
+  methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 5000;
+      this.isPlaying = true;
+      console.log(this.delay);
+    },
+  },
+};
+</script>
